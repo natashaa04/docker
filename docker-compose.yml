@@ -1,50 +1,18 @@
-  services:
-    api:
-      build: ./todo-api
-      ports:
-        - "5000:5000"
-      env_file:
-        - ./todo-api/.env
-      environment:
-        PORT: 5000
-      restart: unless-stopped
+services:
+  api:
+    build: ./todo-api
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./todo-api/.env
+    environment:
+      PORT: 5000
+    restart: unless-stopped
 
-    frontend:
-      build:
-        context: ./todo-frontend
-        args:
-          NEXT_PUBLIC_API_URL: http://localhost:5000
-      ports:
-        - "3000:3000"
-      depends_on:
-        - api
-      restart: unless-stopped
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      fg n
+  frontend:
+    build: ./todo-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    restart: unless-stopped
